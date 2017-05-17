@@ -1,4 +1,8 @@
 # thermos
+to start:
+source thermos/scripts/activate
+cd thermos/
+python thermos.py
 
 https://app.pluralsight.com/library/courses/flask-micro-framework-introduction/table-of-contents
 
