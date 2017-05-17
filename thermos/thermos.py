@@ -1,6 +1,17 @@
-from flask import Flask, render_template, url_for
+from datetime import datetime
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
+
+bookmarks = []
+
+def store_bookmark(url):
+    bookmarks.append(dict(
+        url= url,
+        user = "reindert",
+        date = datetime.utcnow()
+    ))
+
 
 
 @app.route('/')
@@ -12,6 +23,10 @@ def index():
 
 @app.route('/add')
 def add():
+    if request.method == "POST":
+        url = request.form['url']
+        store_bookmark(url)
+        app.logger.debug('stored url: ' + url)
     return render_template('add.html')
 
 
